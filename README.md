@@ -1,7 +1,7 @@
 # MyDash
 ## React Assessment using D3 library for visualization 
 
-- Live link: https://countrystat-app.netlify.app/
+- Live link: https://mydash-chart.netlify.app/
 
 ## Third Party Libraries used.
 
