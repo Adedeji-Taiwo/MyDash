@@ -1,0 +1,55 @@
+.bar {
+    background-color: #dde3ea;
+    padding: 12px 20px;
+    &-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background-color: #f7f7f7;
+        @include border-radius(5px);
+
+        & .heading-secondary {
+            font-size: 32px;
+            color: #525a6a;
+            background-color: #f7f7f7;
+            @include respond(phone){
+                font-size: 22px;
+            }
+        }
+
+       & .text-paragraph-16 {
+            margin-top: 5px;
+            color: #9299a7;
+            @include respond(phone) {
+                    font-size: 14px;
+                }
+        }
+
+        & .bar-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            margin: 10px;
+
+            .bar-btn-primary {
+                padding: 10px 45px;
+                margin-top: 20px;
+            }
+        }
+
+        & svg {
+            @include respond(big-desktop) {
+                    width: 50%;
+                }
+            @include respond(tab-land) {
+                width: 70%;
+            }
+            @include respond(phone) {
+                    width: 100%;
+                }
+        }
+    }
+}
