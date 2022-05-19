@@ -20,8 +20,8 @@ const Form = () => {
       email: 'ash@test.com',
       password: 'asdfghjk',
       confirmPassword: 'asdfghjk',
-      number: '222-333-444',
-      checked: true,
+      number: '222-333-6789',
+      checked: false,
       errors: {
         name: '',
         email: '',
@@ -62,9 +62,9 @@ const [formData, setFormData] = useState(initialState);
         break;
       case 'confirmPassword': 
         errors.confirmPassword = 
-          password !== value
-            ? 'Passwords do not match!'
-            : '';
+            password !== value
+              ? 'Passwords do not match!'
+              : '';
         break;
       case 'number': 
         errors.number = 
@@ -80,6 +80,14 @@ const [formData, setFormData] = useState(initialState);
   }
 
   const handleCheck = () => {
+     let errors = formData.errors;
+
+    if(checked === true) {
+         errors.checked = 'You need to accept terms and conditions';
+    } else {
+        errors.checked = ''
+    }
+
     setFormData((prevState) => {
         return {
             ...prevState,
@@ -90,35 +98,21 @@ const [formData, setFormData] = useState(initialState);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const {checked} = formData;
+
     let errors = formData.errors;
-
-    if(checked === false) {
-         errors.checked = 'You need to accept terms and conditions';
-    } else {
-        errors.checked = ''
-    }
-
+    
     if(validateForm(errors)) {
-      console.info('form sent');
-      setFormData({checked: false});
-       setFormData({email: ''});
-       setFormData({password:''});
-       setFormData({confirmPassword:''});
-       setFormData({name:''});
-       setFormData({number:''});
-    } else {
-        alert("No field should be empty")
-    }
+    navigate('/chart', {replace: true});
+    console.info('form sent');
+     setFormData({checked: false, email: '', password:'', confirmPassword:'', name:'', number:''});
+    
+  } else {
+     alert("No field should be empty");
+  }
     
    setFormData({errors});
    console.log(formData);
   };
-
-  const handleNavigation = () => {
-    navigate('/chart', {replace: true});
-  }
-
 
  const {
       name,
@@ -245,7 +239,7 @@ const [formData, setFormData] = useState(initialState);
                             
                         <label htmlFor="javascript" style={{fontWeight: checked === true ? "bolder" : ""}}>Javascript</label>
                     </div>
-                    <button className="btn btn-primary" onClick={handleNavigation} >Create account</button>
+                    <button className="btn btn-primary" type="submit" disabled={!email || !password || !confirmPassword || !number || !name || checked === false}>Create account</button>
                 </form>
             </div>
         </div>
